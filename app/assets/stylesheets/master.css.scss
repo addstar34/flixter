@@ -1,0 +1,46 @@
+h1, h2, h3, h4, h5, h6, .navbar {
+	margin: 0;
+}
+
+.navbar {
+	border-radius: 0;
+}
+
+.navbar {
+  border-radius:0;
+  font-family: "Helvetica Neue", Helvetica;
+  font-weight: 200;
+}
+
+.navbar-default a.navbar-brand {
+	font-family: "Helvetica Neue", Helvetica;
+	font-weight: 100;
+}
+
+.hero {
+	background: url('jumbotron3.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	backtround-size: cover;
+	height: 700px;
+}
+
+.frosty {
+	background: rgba(0,0,0, 0.5);
+	color: white;
+}
+
+.frosty h1 {
+	font-family: "Helvetica Neue", Helvetica;
+	font-weight: 100;
+}
+
+.frosty h2 {
+	font-family: "Helvetica Neue", Helvetica;
+	font-weight: 200;
+}
+
+.btn {
+	border-radius: 0;
+}
