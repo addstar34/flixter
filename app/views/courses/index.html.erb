@@ -1,0 +1,14 @@
+<br />
+<h1 class="text-center">Learn Something New Today</h1>
+<br/>
+
+<% @courses.each do |course| %>
+	<div class="booyah-box col-md-8 col-md-offset-2">
+		<h3 class="pull-left"><%= course.title %></h3>
+		<h4 class="pull-right">$<%= course.cost %></h4>
+		<br class="clr" />
+		<hr>
+		<p><%= course.description %></p>
+		<br />
+	</div>
+<% end %>
