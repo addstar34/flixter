@@ -1,5 +1,19 @@
+.clr {
+	clear: both;
+}
+
 h1, h2, h3, h4, h5, h6, .navbar {
 	margin: 0;
+}
+
+.booyah-box {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-color: #e4e4e4 #e4e4e4 #e4e4e4 #e4e4e4;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding: 20px;
+  background: #f8f8f8;
 }
 
 .navbar {
