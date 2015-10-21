@@ -15,10 +15,11 @@ class Instructor::LessonsController < ApplicationController
 
 	def require_authorized_for_current_section
 		if current_section.course.user != current_user
-			return render :text => 'Unauthorized', :status => :Unauthorized
+			return render :text => 'Unauthorized', :status => :unauthorized
 		end
 	end
 
+	# a helper_method allows a view to be able to call this method
 	helper_method :current_section
 	def current_section
 		@current_section ||= Section.find(params[:section_id])
