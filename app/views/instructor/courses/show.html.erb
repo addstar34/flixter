@@ -1,5 +1,6 @@
 <div class="booyah-box col-md-8 col-md-offset-2">
 	<h1 class="text-center"><%= current_course.title %></h1>
+	<%= image_tag current_course.image, :class => 'img-responsive' %>
 	<p><%= current_course.description %><p>
 	<h5>$<%= current_course.cost %><h5>
 	<br />
