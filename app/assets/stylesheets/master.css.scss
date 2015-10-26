@@ -78,3 +78,29 @@ h1, h2, h3, h4, h5, h6, .navbar {
   padding:8px;
   margin:10px;
 }
+
+.lesson {
+	background-color: white;
+	border: 1px solid #e4e4e4;
+	padding: 20px;
+	margin-top: 10px;
+	height: 130px;
+}
+
+.lesson a {
+	font-weight: 100;
+	font-size: 15px;
+}
+
+.lesson a b {
+	font-weight: 100;
+	font-size: 25px;
+}
+
+.img-center {
+	margin: auto;
+}
+
+.alert {
+	margin-bottom: 0;
+}
