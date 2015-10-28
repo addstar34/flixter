@@ -48,6 +48,8 @@ gem 'figaro', '>= 1.0.0'
 
 gem 'stripe'
 
+gem 'ranked-model'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
