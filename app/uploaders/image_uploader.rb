@@ -9,6 +9,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   # storage :file
   # storage :fog
+  # :aws doesn't work on windows inside a vagrant environment
   storage :aws
 
   # Override the directory where uploaded files will be stored.
