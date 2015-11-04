@@ -1,62 +1,55 @@
-<div class="booyah-box col-md-10 col-md-offset-1 text-center">
-  <h1><%= @course.title %></h1>
+<div class="booyah-box col-md-10 col-md-offset-1">
+  <h1 class="text-center"><%= @course.title %></h1>
   <br />
-
   <%= image_tag @course.image, :class => 'img-responsive img-center' %>
-
   <br />
-  <div class="col-sm-4 col-xs-12 text-center">
-  	<span class="label label-default">
+  <p><%= @course.description %></p>
+  <br />
+  <h3><span class="label label-info">
     <%= number_to_currency @course.cost %>
-    </span>
-  </div>
-
-  <div class="col-sm-8 col-xs-12">
-    <%= @course.description %>
-  </div>
-
-  <div>
-  <% if current_user && current_user == @course.user %>
-  	<br />
-  	<br />
-  	<%= link_to 'Administer', instructor_course_path(@course), :class => 'btn btn-danger  btn-lg pull-right' %>
-  <% end %>
-  
+  </span></h3>
   <br />
-  <% if current_user && current_user.enrolled_in?(@course) %>
-    <h3 class="label label-info">You are Enrolled!</h3>
-  <% else %>
-    <% if @course.free? %>
-      <%= link_to 'Enroll', course_enrollments_path(@course), :class => 'btn btn-primary', :method => :post, data: {disable_with: 'Enrolling...' } %>
+  <div>
+    <% if current_user && current_user == @course.user %>
+      <%= link_to 'Administer', instructor_course_path(@course), :class => 'btn btn-danger btn-lg pull-left' %>
+      <br class="clr" />
     <% else %>
-      <% if current_user.present? %>
-        <%= form_tag course_enrollments_path(@course) do %>
-    
-          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                  data-description="<%= @course.title %>"
-                  data-amount="<%= (@course.cost * 100).to_i %>"
-                  data-locale="auto"></script>
-        <% end %>
+      <% if current_user && current_user.enrolled_in?(@course) %>
+        <h3><span class="label label-info">You are Enrolled!</span></h3>
       <% else %>
-        <%= link_to 'Sign Up to Enroll', new_user_registration_path, :class => 'btn btn-primary' %>
+        <% if @course.free? %>
+          <%= link_to 'Enroll', course_enrollments_path(@course), :class => 'btn btn-primary', :method => :post, data: {disable_with: 'Enrolling...' } %>
+        <% else %>
+          <% if current_user.present? %>
+            <%= form_tag course_enrollments_path(@course) do %>
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-description="<%= @course.title %>"
+                data-amount="<%= (@course.cost * 100).to_i %>"
+                data-locale="auto"></script>
+            <% end %>
+          <% else %>
+            <%= link_to 'Sign Up to Enroll', new_user_registration_path, :class => 'btn btn-primary' %>
+          <% end %>
+        <% end %>
       <% end %>
     <% end %>
-    
-  <% end %>
-
   </div>
-
   <br class="clr" />
-  
+  <hr />
   <div>
     <% @course.sections.rank(:row_order).each do |section| %>
-    <br /><br />
+    <br />
       <div class="section">
-        <h3><%= section.title %></h3>
+        <h3 class="text-center"><%= section.title %></h3>
         <% section.lessons.rank(:row_order).each do |lesson| %>
           <div class="col-xs-12 col-sm-6">
             <div class="lesson text-center">
+              <% if !current_user || current_user != @course.user && !current_user.enrolled_in?(@course) %>
+                <div class="locked pull-left">
+                  <h4><span class="glyphicon glyphicon-lock"></span></h4>
+                </div>
+              <% end %>
               <br />
               <%= link_to lesson_path(lesson) do %>
                 <b><%= lesson.title %></b>
@@ -70,6 +63,4 @@
       </div>
     <% end %>
   </div>
-
-
 </div>

@@ -23,36 +23,56 @@
 	});
 </script>
 
-<div class="booyah-box col-md-8 col-md-offset-2">
+<div class="booyah-box col-md-10 col-md-offset-1">
 	<h1 class="text-center"><%= current_course.title %></h1>
-	<%= image_tag current_course.image, :class => 'img-responsive' %>
-	<p><%= current_course.description %><p>
-	<h5>$<%= current_course.cost %><h5>
 	<br />
+	<%= image_tag current_course.image, :class => 'img-responsive img-center' %>
+	<br />
+	<p><%= current_course.description %></p>
+	<br />
+  <h3><span class="label label-info">
+    <%= number_to_currency current_course.cost %>
+  </span></h3>
+	<br />
+	<%= link_to 'Student Preview', course_path(current_course), :class => 'btn btn-warning pull-left' %>
+	<br class="clr" />
+	<br class="clr" />
+	<hr />
 	<div class="text-center">
-		<%= link_to 'Add new section', new_instructor_course_section_path(current_course), :class => 'btn btn-primary btn-lg' %>
+		<%= link_to 'Add new section', new_instructor_course_section_path(current_course), :class => 'pull-left btn btn-primary btn-lg' %>
 	</div>
-	<div>
-		<%= link_to 'Student Preview', course_path(current_course), :class => 'btn btn-warning pull-right' %>
-	</div>
-	
+	<br class="clr" />
 	<ul class="sections">
 		<% current_course.sections.rank(:row_order).each do |section| %>
-			<li data-update-url="<%= instructor_section_path(section) %>">
+			<li data-update-url="<%= instructor_section_path(section) %>" class="section-li">
+			<div class="header">
+				<span class="glyphicon glyphicon-option-vertical"></span>
 				<%= section.title %>
-				<%= link_to 'Create lesson', new_instructor_section_lesson_path(section), :class => 'btn btn-primary btn-xs' %>
-				<ul class="lessons">
-					<% section.lessons.rank(:row_order).each do |lesson| %>
-						<li data-update-url="<%= instructor_lesson_path(lesson) %>">
-							<b><%= lesson.title %></b>
-							 - 
-							<%= lesson.subtitle %>
-						</li>
-					<% end %>
-				</ul>
+			</div>
+			<br class="clr" />
+			<%= link_to 'Create lesson', new_instructor_section_lesson_path(section), :class => 'pull-left btn btn-primary btn-xs' %>
+			<br class="clr" />
+			<ul class="lessons">
+				<% section.lessons.rank(:row_order).each do |lesson| %>
+					<li data-update-url="<%= instructor_lesson_path(lesson) %>">
+						<div class="col-xs-1">
+							<br />
+							<span class="glyphicon glyphicon-option-vertical"></span>
+						</div>
+						<div class="col-xs-11 text-center">
+							<p>
+								<b><%= lesson.title %></b>
+							</p>
+							<p>
+								<%= lesson.subtitle %>
+							</p>
+						</div>
+						<br class="clr" />
+					</li>
+				<% end %>
+			</ul>
 			</li>
 		<% end %>
 	</ul>
-
 	</div>
 </div>

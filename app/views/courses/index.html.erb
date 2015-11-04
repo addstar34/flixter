@@ -1,25 +1,23 @@
 <br />
 <h1 class="text-center">Learn Something New Today</h1>
-<br/>
+<br class="clr" />
 
 <% @courses.each do |course| %>
-	<div class="row">
-		<div class="course-img-thumb-box col-md-2 col-md-offset-2">
-			<%= image_tag course.image_url(:thumb), :class => 'img-responsive pull-right' %>
+	<div class="booyah-box col-xs-12 col-md-8 col-md-offset-2">
+		<div class="img-thumb">
+			<%= image_tag course.image_url(:thumb), :class => 'img-responsive pull-left' %>
 		</div>
+		<h3><%= link_to course.title, course_path(course) %></h3>
 		
-	
-
-	<div class="booyah-box col-md-6">
-		<h3 class="pull-left"><%= link_to course.title, course_path(course) %></h3>
-		<h4 class="pull-right"><%= number_to_currency course.cost %></h4>
-		<br class="clr">
 		<h5>by <%= course.user.email %></h5>
+		<br />
+		<h4><%= number_to_currency course.cost %></h4>
 		<br class="clr" />
+		<br />
 		<hr>
-		<p><%= course.description %></p>
+		<p>
+			<%= course.description %>
+		</p>
 		<%= link_to 'More Details...', course_path(course), :class => 'btn btn-primary pull-right' %>
-	</div>
-
 	</div>
 <% end %>
